@@ -1,6 +1,7 @@
 #include "qtvector.h"
 #include <initializer_list>
 #include <cmath>
+#include <string>
 
 QTVector::QTVector(std::initializer_list<double> l)
 {
@@ -61,4 +62,15 @@ int QTVector::dim() const
 double QTVector::at(int n) const
 {
     return values_.at(n);
+}
+
+std::string QTVector::toString() const
+{
+	string res{"{"};
+	for(auto v : values_) {
+		res += v;
+		res += " "
+	}
+	res += "}";
+	return res;
 }

@@ -3,6 +3,7 @@
 
 #include <initializer_list>
 #include <vector>
+#include <string>
 class QTVector
 {
 public:
@@ -16,6 +17,7 @@ public:
     double& operator[](int);
     double at(int) const;
     double norm2() const;
+	std::string toString() const;
 private:
     int dim_;
     std::vector<double> values_;

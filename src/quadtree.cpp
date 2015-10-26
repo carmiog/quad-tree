@@ -1,10 +1,10 @@
 #include "quadtree.h"
 #include "qtvector.h"
-
+#include "utils.h"
 QuadTree::QuadTree(int dim)
 {
-    dim_ = dim;
-    children_ = new QuadTree*[dim];
+    dim_ = dim*4;
+    children_ = new QuadTree*[dim_];
     for(int i = 0; i < dim_; i++)
         children_[i] = nullptr;
 }
@@ -12,7 +12,7 @@ QuadTree::QuadTree(int dim)
 
 QuadTree::QuadTree(int dim, const QTVector& qv)
 {
-    dim_ = dim;
+    dim_ = pow2(dim);
     children_ = new QuadTree*[dim];
     for(int i = 0; i < dim_; i++)
         children_[i] = nullptr;
