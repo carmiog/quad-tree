@@ -16,7 +16,7 @@ QuadTree::QuadTree(int dim, const QTVector& qv)
     children_ = new QuadTree*[dim];
     for(int i = 0; i < dim_; i++)
         children_[i] = nullptr;
-    setValue(qv);
+    set_value(qv);
 }
 
 QuadTree::~QuadTree()
@@ -27,22 +27,22 @@ QuadTree::~QuadTree()
     delete children_;
 }
 
-void QuadTree::setValue(const QTVector& qv)
+void QuadTree::set_value(const QTVector& qv)
 {
     value_ = QTVector{qv};
 }
 
-QTVector QuadTree::getValue() const
+QTVector QuadTree::get_value() const
 {
     return value_;
 }
 
 void QuadTree::insert(const QTVector& qv)
 {
-    if(value_.isNull()) {
-        setValue(qv);
+    if(value_.is_null()) {
+        set_value(qv);
     } else {
-        int k = getSuccessorValue(qv, value_);
+        int k = qv.k_successor_of(value_);
         if(children_[k] == nullptr) {
             children_[k] = new QuadTree{dim_, qv};
         } else {
@@ -51,7 +51,7 @@ void QuadTree::insert(const QTVector& qv)
     }
 }
 
-int QuadTree::childrenCount() const
+int QuadTree::children_count() const
 {
     int res = 0;
     for(int i = 0; i < dim_; i++)
@@ -63,12 +63,4 @@ int QuadTree::childrenCount() const
 int QuadTree::dim() const
 {
     return dim_;
-}
-int getSuccessorValue(const QTVector& x, const QTVector& y)
-{
-    int k = (x.at(0) > y.at(0)) ? 1 : 0; 
-    for(int i = 1; i < x.dim(); i++)
-        if(x.at(i) > y.at(i))
-            k += 2 << (i-1);
-    return k;
 }

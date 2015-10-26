@@ -13,11 +13,12 @@ public:
     QTVector();
     ~QTVector();
     int dim() const;
-    bool isNull() const;
+    bool is_null() const;
     double& operator[](int);
     double at(int) const;
     double norm2() const;
-	std::string toString() const;
+    int k_successor_of(const QTVector&);
+    std::string to_string() const;
 private:
     int dim_;
     std::vector<double> values_;

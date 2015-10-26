@@ -44,7 +44,7 @@ QTVector::~QTVector()
 
 }
 
-bool QTVector::isNull() const
+bool QTVector::is_null() const
 {
     return dim_ == 0;    
 }
@@ -64,13 +64,22 @@ double QTVector::at(int n) const
     return values_.at(n);
 }
 
-std::string QTVector::toString() const
+int QTVector::k_successor_of(const QTVector& y)
 {
-	string res{"{"};
-	for(auto v : values_) {
-		res += v;
-		res += " "
-	}
-	res += "}";
-	return res;
+    int k = (this->at(0) > y.at(0)) ? 1 : 0; 
+    for(int i = 1; i < this->dim(); i++)
+        if(this->at(i) > y.at(i))
+            k += 2 << (i-1);
+    return k;	
+}
+
+std::string QTVector::to_string() const
+{
+    std::string res{"{"};
+    for(auto v : values_) {
+	res += v;
+	res += " ";
+    }
+    res += "}";
+    return res;
 }

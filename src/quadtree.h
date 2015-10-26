@@ -8,16 +8,14 @@ public:
     QuadTree(int);
     QuadTree(int, const QTVector&);
     ~QuadTree();
-    void setValue(const QTVector&);
-    QTVector getValue() const;
+    void set_value(const QTVector&);
+    QTVector get_value() const;
     void insert(const QTVector&);
-    int childrenCount() const;
+    int children_count() const;
     int dim() const;
 private:
     int dim_;
     QTVector value_;
     QuadTree **children_;
 };
-
-int getSuccessorValue(const QTVector&, const QTVector&);
 #endif
