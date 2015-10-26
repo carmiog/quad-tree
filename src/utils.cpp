@@ -7,3 +7,8 @@ inline int pow(int x, int n)
         res *= x;
     return res;
 }
+
+inline int pow2(int n)
+{
+    return (n == 0) ? 1 : 2 << (n - 1);
+}
